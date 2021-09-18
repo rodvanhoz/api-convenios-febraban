@@ -20,3 +20,13 @@
         (is (= (-> result (first) (:segmento result)) "1"))
         (is (= (-> result (first) (:cod-convenio result)) "0000"))
         (is (= (-> result (first) (:nome result)) "Prefeitura Municipal de São Paulo"))))))
+
+(deftest should-get-by-cod-convenio
+  (testing "should get by cod-convenio"
+    (with-redefs [db.febraban/get (fn [clauses] (mocks.database/mock-get clauses))]
+      (let [result (get-by-cod-convenio "0040")]
+        (is (= (count result) 1))
+        (is (= (-> result (first) (:uuid result)) "782ba534-43dd-4995-a3f2-7879a1d4c551"))
+        (is (= (-> result (first) (:segmento result)) "2"))
+        (is (= (-> result (first) (:cod-convenio result)) "0040"))
+        (is (= (-> result (first) (:nome result)) "DAERP - RIBEIRÃO PRETO"))))))
