@@ -7,7 +7,7 @@
                 {:uuid "3c2fd625-2540-46cf-909e-027b4c61803a" :segmento "4" :cod-convenio "0001" :nome "CETERP - CENTRAL TELEFÔNICA DE RIBEIRÃO PRETO" :uf "SP"}
                 {:uuid "f0b6fa79-e1da-4fd3-8676-d04f7164da35" :segmento "4" :cod-convenio "0262" :nome "NET RIBEIRÃO PRETO S.A" :uf "SP"}))
 
-(defn mock-get-by-uuid [uuid]
+(defn- mock-get-by-uuid [uuid]
   (filter #(= (str uuid) (:uuid %)) data))  
 
 (defn mock-get-by-cod-convenio [cod-convenio]
