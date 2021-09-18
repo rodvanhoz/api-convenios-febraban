@@ -5,7 +5,8 @@
             [clojure.tools.logging :as log]
             [ring.middleware.json :refer [wrap-json-response wrap-json-body]]
             [ring.middleware.cors :refer [wrap-cors]]
-            [ring.util.http-response :refer [ok bad-request unauthorized not-found created no-content conflict]]))
+            [ring.util.http-response :refer [ok bad-request unauthorized not-found created no-content conflict]]
+            [api-convenios-febraban.controller.febraban :as controller.febraban]))
 
 (defn home
   [_]
@@ -13,22 +14,21 @@
     :body {:status "ok"}})
 
 (defn- convenios-get-all []
-  )
+  (controller.febraban/get-all))
 
 (defn- convenios-get-by-uuid [uuid]
-  )
+  (controller.febraban/get-by-uuid uuid))
 
 (defn- convenios-get-by-cod-convenio [cod-convenio]
-  )
+  (controller.febraban/get-by-cod-convenio cod-convenio))
 
 (defroutes app-routes
   (GET "/" [] home)
-  (route/not-found (not-found))
   (context "/api" []
-    (context "/convenios" []
+    (context "/febraban" []
       (GET "/" [] (convenios-get-all))
       (GET "/:uuid" [uuid] (convenios-get-by-uuid uuid))
-      (GET "/:cod-convenio" [cod-convenio] (convenios-get-by-cod-convenio cod-convenio)))))
+      (GET "/cod-convenio/:cod-convenio" [cod-convenio] (convenios-get-by-cod-convenio cod-convenio)))))
 
 (def app
  (-> (wrap-defaults app-routes site-defaults)

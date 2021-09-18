@@ -6,3 +6,6 @@
 
 (defn get-by-uuid [uuid]
   (db.febraban/by-uuid uuid))
+
+(defn get-by-cod-convenio [cod-convenio]
+  (db.febraban/by-cod-convenio cod-convenio))

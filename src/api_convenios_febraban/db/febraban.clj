@@ -10,7 +10,7 @@
 (defn get
   [clauses]
   (select e/febraban
-    (fields :uuid :segmento :cod-convenio :nome)
+    (fields :uuid :segmento [:cod_convenio :cod-convenio] :nome)
     (where clauses)))
 
 (defn by-uuid [uuid]
