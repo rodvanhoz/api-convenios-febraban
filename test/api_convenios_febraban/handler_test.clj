@@ -32,7 +32,8 @@
         (is (= (-> body (first) (:uuid body)) "3c2fd625-2540-46cf-909e-027b4c61803a"))
         (is (= (-> body (first) (:segmento body)) "4"))
         (is (= (-> body (first) (:cod-convenio body)) "0001"))
-        (is (= (-> body (first) (:nome body)) "CETERP - CENTRAL TELEFÔNICA DE RIBEIRÃO PRETO"))))))
+        (is (= (-> body (first) (:nome body)) "CETERP - CENTRAL TELEFÔNICA DE RIBEIRÃO PRETO"))
+        (is (= (-> body (first) (:uf body)) "SP"))))))
 
 (deftest should-get-by-cod-convenio
   (testing "should get by cod-covenio"
@@ -44,4 +45,5 @@
         (is (= (-> body (first) (:uuid body)) "f0b6fa79-e1da-4fd3-8676-d04f7164da35"))
         (is (= (-> body (first) (:segmento body)) "4"))
         (is (= (-> body (first) (:cod-convenio body)) "0262"))
-        (is (= (-> body (first) (:nome body)) "NET RIBEIRÃO PRETO S.A"))))))
+        (is (= (-> body (first) (:nome body)) "NET RIBEIRÃO PRETO S.A"))
+        (is (= (-> body (first) (:uf body)) "SP"))))))

@@ -19,7 +19,8 @@
         (is (= (-> result (first) (:uuid result)) "50888255-1906-433e-b478-f9c48da8b9b7"))
         (is (= (-> result (first) (:segmento result)) "1"))
         (is (= (-> result (first) (:cod-convenio result)) "0000"))
-        (is (= (-> result (first) (:nome result)) "Prefeitura Municipal de São Paulo"))))))
+        (is (= (-> result (first) (:nome result)) "Prefeitura Municipal de São Paulo"))
+        (is (= (-> result (first) (:uf result)) "SP"))))))
 
 (deftest should-get-by-cod-convenio
   (testing "should get by cod-convenio"
@@ -29,4 +30,5 @@
         (is (= (-> result (first) (:uuid result)) "782ba534-43dd-4995-a3f2-7879a1d4c551"))
         (is (= (-> result (first) (:segmento result)) "2"))
         (is (= (-> result (first) (:cod-convenio result)) "0040"))
-        (is (= (-> result (first) (:nome result)) "DAERP - RIBEIRÃO PRETO"))))))
+        (is (= (-> result (first) (:nome result)) "DAERP - RIBEIRÃO PRETO"))
+        (is (= (-> result (first) (:uf result)) "SP"))))))
