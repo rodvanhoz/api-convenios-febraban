@@ -22,13 +22,19 @@
 (defn- convenios-get-by-cod-convenio [cod-convenio]
   (controller.febraban/get-by-cod-convenio cod-convenio))
 
+(defn- convenios-get-by-segmento-and-cod-convenio [segmento cod-convenio]
+  (controller.febraban/get-by-cod-convenio cod-convenio segmento))
+
 (defroutes app-routes
   (GET "/" [] home)
   (context "/api" []
     (context "/febraban" []
       (GET "/" [] (convenios-get-all))
       (GET "/:uuid" [uuid] (convenios-get-by-uuid uuid))
-      (GET "/cod-convenio/:cod-convenio" [cod-convenio] (convenios-get-by-cod-convenio cod-convenio)))))
+      (GET "/cod-convenio/:cod-convenio" [cod-convenio] (convenios-get-by-cod-convenio cod-convenio))
+      
+      (context "/segmento" []
+        (GET "/:segmento/cod-convenio/:cod-convenio" [segmento cod-convenio] (convenios-get-by-segmento-and-cod-convenio segmento cod-convenio))))))
 
 (def app
  (-> (wrap-defaults app-routes site-defaults)
