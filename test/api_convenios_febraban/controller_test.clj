@@ -9,7 +9,7 @@
   (testing "should get all convenios"
     (with-redefs [db.febraban/get (fn [clauses] (mocks.database/mock-get clauses))]
       (let [result (get-all)]
-        (is (= (count result) 4))))))
+        (is (= (count result) 5))))))
 
 (deftest should-get-by-uuid
   (testing "should get by uuid"
@@ -31,4 +31,14 @@
         (is (= (-> result (first) (:segmento result)) "2"))
         (is (= (-> result (first) (:cod-convenio result)) "0040"))
         (is (= (-> result (first) (:nome result)) "DAERP - RIBEIRÃO PRETO"))
+        (is (= (-> result (first) (:uf result)) "SP")))))
+        
+  (testing "testing get by cod-convenio and segmento"
+    (with-redefs [db.febraban/get (fn [clauses] (mocks.database/mock-get clauses))]
+      (let [result (get-by-cod-convenio "0262" "5")]
+        (is (= (count result) 1))
+        (is (= (-> result (first) (:uuid result)) "eeec1d56-dbe6-4e64-91a4-5be9b8d3e2ed"))
+        (is (= (-> result (first) (:segmento result)) "5"))
+        (is (= (-> result (first) (:cod-convenio result)) "0262"))
+        (is (= (-> result (first) (:nome result)) "TESTE FEBRABAN SEGMENTO 5"))
         (is (= (-> result (first) (:uf result)) "SP"))))))
